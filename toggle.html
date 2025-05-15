@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Day and Night Toggle</title>
+  <style>
+    body {
+      margin: 0;
+      transition: background 0.5s, color 0.5s;
+      background: #fff;
+      color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: sans-serif;
+    }
+
+    .toggle {
+      width: 80px;
+      height: 40px;
+      background: #ffcc00;
+      border-radius: 20px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.5s;
+    }
+
+    .circle {
+      width: 36px;
+      height: 36px;
+      background: #fff;
+      border-radius: 50%;
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      transition: all 0.5s;
+      box-shadow: 0 0 10px rgba(255,255,255,0.5);
+    }
+
+    body.night {
+      background: #1e1e2f;
+      color: #fff;
+    }
+
+    body.night .toggle {
+      background: #333;
+    }
+
+    body.night .circle {
+      left: 42px;
+      background: #f1c40f;
+      box-shadow: 0 0 20px yellow;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="toggle" onclick="toggleMode()">
+    <div class="circle"></div>
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('night');
+    }
+  </script>
+</body>
+</html>

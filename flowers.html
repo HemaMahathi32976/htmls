@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Magical Stars Trail</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(to bottom right, #ffe4ec, #e0f7fa);
+      cursor: none;
+    }
+
+    .star {
+      position: absolute;
+      color: white;
+      font-size: 20px;
+      pointer-events: none;
+      animation: floatAway 1s ease-out forwards;
+    }
+
+    @keyframes floatAway {
+      0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.5) translateY(-50px) rotate(180deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<script>
+  const colors = ['#FF69B4', '#FFB6C1', '#FFD700', '#00CED1', '#BA55D3', '#7FFFD4', '#FF4500'];
+
+  document.addEventListener('mousemove', function(e) {
+    const star = document.createElement('div');
+    star.classList.add('star');
+    star.innerText = '★'; // Unicode star
+    star.style.left = `${e.pageX}px`;
+    star.style.top = `${e.pageY}px`;
+    star.style.color = colors[Math.floor(Math.random() * colors.length)];
+    star.style.fontSize = `${Math.random() * 10 + 15}px`;
+    star.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+    document.body.appendChild(star);
+
+    setTimeout(() => {
+      star.remove();
+    }, 1000);
+  });
+</script>
+
+</body>
+</html>

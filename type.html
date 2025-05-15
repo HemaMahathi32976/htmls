@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Typing Effect</title>
+  <style>
+    body {
+      background: #121212;
+      color: #00ffe0;
+      font-family: monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-size: 24px;
+    }
+
+    #typewriter::after {
+      content: '|';
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="typewriter"></div>
+
+<script>
+  const texts = [
+    "Welcome to my HTML Playground.",
+    "Let's build something cool!",
+    "CSS is magic ✨",
+    "JavaScript makes it alive 💡"
+  ];
+
+  let i = 0;
+  let j = 0;
+  let current = '';
+  let isDeleting = false;
+
+  function type() {
+    const typewriter = document.getElementById('typewriter');
+    const fullText = texts[i];
+
+    if (isDeleting) {
+      current = fullText.substring(0, j--);
+    } else {
+      current = fullText.substring(0, j++);
+    }
+
+    typewriter.textContent = current;
+
+    if (!isDeleting && j === fullText.length) {
+      isDeleting = true;
+      setTimeout(type, 1000); // wait before deleting
+    } else if (isDeleting && j === 0) {
+      isDeleting = false;
+      i = (i + 1) % texts.length;
+    }
+
+    setTimeout(type, isDeleting ? 50 : 100);
+  }
+
+  type();
+</script>
+
+</body>
+</html>
